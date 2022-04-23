@@ -29,6 +29,15 @@ export default function Header(props) {
         </h1>)
     }
 
-    return (<a href='/login'><h1>Click here to login</h1></a>)
+    return (
+        <div>
+             <a href='/login'><h1>Click here to login</h1></a>
+             <a href='/createUser'><h1>Create User</h1></a>
+
+
+        </div>
+   
+   
+    )
 
 }
