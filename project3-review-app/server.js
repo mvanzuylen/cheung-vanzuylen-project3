@@ -8,7 +8,7 @@ const app = express();
 const restaurantRouter = require('./routes/restaurant');
 const userRouter = require('./routes/user');
 
-const mongooseEnpoint = 'mongodb://127.0.0.1/restaurant_app';
+const mongooseEnpoint = 'mongodb+srv://madeleine:van28247@webdev.qxpy6.mongodb.net/restaurant_app?retryWrites=true&w=majority';
 mongoose.connect(mongooseEnpoint, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error connecting to MongoDB:'));

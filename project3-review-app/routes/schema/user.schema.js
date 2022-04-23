@@ -1,5 +1,4 @@
 const Schema = require('mongoose').Schema;
-
 const UserSchema = new Schema({
     username: {
         type: String,
@@ -9,5 +8,4 @@ const UserSchema = new Schema({
 }, {
     collection: 'users',
 })
-
 module.exports = UserSchema;

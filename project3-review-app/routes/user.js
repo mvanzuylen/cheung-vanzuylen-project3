@@ -27,7 +27,7 @@ router.post('/authenticate', function(request, response) {
         })
 })
 
-/*
+
 router.post('/logout', auth_middleware, function(request, response) {
     const token = jwt.sign({}, "SUPER_SECRET", {
         expiresIn: '0d'
@@ -39,7 +39,7 @@ router.post('/logout', auth_middleware, function(request, response) {
 router.get('/isLoggedIn', auth_middleware, function(request, response) {
     return response.status(200).send({username: request.username});
 })
-*/
+
 router.get('/:username', function(request, response) {
 
     const username = request.params.username
