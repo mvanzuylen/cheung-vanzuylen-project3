@@ -9,6 +9,7 @@ export default function Login(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    
     function createNewUser() {
         Axios.post('/api/user/authenticate', {username, password})
             .then(response => {
@@ -33,6 +34,4 @@ export default function Login(props) {
         </div>
 
     )
-
-
 } 
