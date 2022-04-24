@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-
+//const jwt = require('jsonwebtoken');
+/*
 module.exports = function(request, response, next) {
     const token = request.cookies.token;  
     if (!token) {
@@ -14,4 +14,4 @@ module.exports = function(request, response, next) {
             }
         });
     }
-}
+}*/

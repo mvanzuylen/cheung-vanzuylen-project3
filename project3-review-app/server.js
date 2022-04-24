@@ -1,20 +1,20 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 
 //const postRouter = require('./routes/posts');
 const app = express();
 const restaurantRouter = require('./routes/restaurant');
 const userRouter = require('./routes/user');
 
-const mongooseEnpoint = 'mongodb+srv://madeleine:van28247@webdev.qxpy6.mongodb.net/restaurant_app?retryWrites=true&w=majority';
-mongoose.connect(mongooseEnpoint, { useNewUrlParser: true });
+//const mongoDBEndpoint = 'mongodb+srv://madeleine:van28247@webdev.qxpy6.mongodb.net/restaurant_app?retryWrites=true&w=majority';
+mongoose.connect("mongodb://localhost/", { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error connecting to MongoDB:'));
-
-const cors = require('cors');
-const auth_middleware = require('./routes/middleware/auth_middleware');
+db.once("open", ()=> console.log("connect to database"))
+//const cors = require('cors');
+//const auth_middleware = require('./routes/middleware/auth_middleware');
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -24,13 +24,14 @@ app.get('*', function (req, res) {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+//app.use(cookieParser());
 
+/*
 app.use(cors({
   origin: '*',
 }));
-
-app.use('/api/restaurant', restaurantRouter);
+*/
+//app.use('/api/restaurant', restaurantRouter);
 app.use('/api/user', userRouter);
 
 app.get('*', function (req, res) {

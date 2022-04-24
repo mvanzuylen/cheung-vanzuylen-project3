@@ -1,7 +1,7 @@
 const express = require('express');
 const UserModel = require('./model/user.model');
-const jwt = require('jsonwebtoken');
-const auth_middleware = require('./middleware/auth_middleware');
+//const jwt = require('jsonwebtoken');
+//const auth_middleware = require('./middleware/auth_middleware');
 const router = express.Router();
 
 router.post('/authenticate', function(request, response) {
@@ -27,7 +27,7 @@ router.post('/authenticate', function(request, response) {
         })
 })
 
-
+/*
 router.post('/logout', auth_middleware, function(request, response) {
     const token = jwt.sign({}, "SUPER_SECRET", {
         expiresIn: '0d'
@@ -39,7 +39,7 @@ router.post('/logout', auth_middleware, function(request, response) {
 router.get('/isLoggedIn', auth_middleware, function(request, response) {
     return response.status(200).send({username: request.username});
 })
-
+*/
 router.get('/:username', function(request, response) {
 
     const username = request.params.username
@@ -51,6 +51,12 @@ router.get('/:username', function(request, response) {
         .catch(error => {
             response.status(400).send(error);
         })
+})
+
+router.get('/', function(request, response) {
+
+    try {response.status(500).json({message: "hello"});}
+    catch (error){response.status(400).json({message: "error"})};
 })
 
 router.post('/', function(request, response) {

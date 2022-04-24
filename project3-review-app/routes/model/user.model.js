@@ -13,6 +13,7 @@ function getUserByUserName(username) {
 }
 
 module.exports = {
+    UserModel,
     createUser,
     getUserByUserName,
 }
