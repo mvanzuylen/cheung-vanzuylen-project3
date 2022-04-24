@@ -1,9 +1,14 @@
 const express = require('express');
-const UserModel = require('./model/user.model');
+const UserModel = require('./schema/userschema');
+//const UserModel = require('./model/usermodel');
 //const jwt = require('jsonwebtoken');
 //const auth_middleware = require('./middleware/auth_middleware');
 const router = express.Router();
-
+/*
+const users = [
+    {username: "mady", password: "pass"}
+]
+*/
 router.post('/authenticate', function(request, response) {
     const {username, password} = request.body;
 
@@ -41,7 +46,7 @@ router.get('/isLoggedIn', auth_middleware, function(request, response) {
 })
 */
 router.get('/:username', function(request, response) {
-
+    
     const username = request.params.username
 
     return UserModel.getUserByUserName(username)
@@ -54,11 +59,13 @@ router.get('/:username', function(request, response) {
 })
 
  router.get('/', async function(request, response) {
-
+     //return response.send(users);
+    
     try {const dummyUser = await UserModel.find()
     response.json(dummyUser)
     }
     catch (error){response.status(400).json({message: error.message})};
+    
 })
 
 router.post('/', function(request, response) {
@@ -75,7 +82,6 @@ router.post('/', function(request, response) {
 
     return UserModel.createUser(user)
         .then(dbResponse => {
-
             if (dbResponse.password === password) {
                 const payload = {
                     username: username,
@@ -86,7 +92,6 @@ router.post('/', function(request, response) {
                 return response.cookie('token', token, {httpOnly: true})
                     .status(200).send({username});
             } 
-
             return response.status(401).send("Invalid password");
         })
         .catch(error => {
