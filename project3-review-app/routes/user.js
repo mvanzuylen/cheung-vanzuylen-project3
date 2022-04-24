@@ -53,10 +53,12 @@ router.get('/:username', function(request, response) {
         })
 })
 
-router.get('/', function(request, response) {
+ router.get('/', async function(request, response) {
 
-    try {response.status(500).json({message: "hello"});}
-    catch (error){response.status(400).json({message: "error"})};
+    try {const dummyUser = await UserModel.find()
+    response.json(dummyUser)
+    }
+    catch (error){response.status(400).json({message: error.message})};
 })
 
 router.post('/', function(request, response) {
